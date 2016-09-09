@@ -19,10 +19,7 @@ namespace Akios.Domain.Repo
 
         public IEnumerable<Grup> Gruplar
         {
-            get
-            {
-                return context.Gruplar.ToList();
-            }
+            get { return context.Gruplar.ToList(); }
         }
 
         public GrupRepo(IKullaniciRepo krepo, IYetkiRepo irepo, IGrupKullaniciRepo gkr, IGrupYetkiRepo gir)

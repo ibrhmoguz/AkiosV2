@@ -55,6 +55,7 @@
     <Compile Include="Entities\GrupKullanici.cs" />
     <Compile Include="Entities\Konfigurasyon.cs" />
     <Compile Include="Entities\Kullanici.cs" />
+    <Compile Include="Entities\KullaniciYetkileri.cs" />
     <Compile Include="Entities\Musteri.cs" />
     <Compile Include="Entities\Personel.cs" />
     <Compile Include="Entities\RefDetaySiparisSeri.cs" />
@@ -68,13 +69,32 @@
     <Compile Include="Interface\IGrupKullaniciRepo.cs" />
     <Compile Include="Interface\IGrupRepo.cs" />
     <Compile Include="Interface\IGrupYetkiRepo.cs" />
+    <Compile Include="Interface\IKonfigurasyonRepo.cs" />
     <Compile Include="Interface\IKullaniciRepo.cs" />
+    <Compile Include="Interface\IMusteriRepo.cs" />
+    <Compile Include="Interface\IPersonelRepo.cs" />
+    <Compile Include="Interface\IRefDataDetayRepo.cs" />
+    <Compile Include="Interface\IRefDataRepo.cs" />
+    <Compile Include="Interface\IRefDetaySiparisSeriRepo.cs" />
+    <Compile Include="Interface\ISayacRepo.cs" />
+    <Compile Include="Interface\ISiparisSeriRepo.cs" />
+    <Compile Include="Interface\ITeslimatKotaRepo.cs" />
     <Compile Include="Interface\IYetkiRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\GrupKullaniciRepo.cs" />
     <Compile Include="Repo\GrupRepo.cs" />
     <Compile Include="Repo\GrupYetkiRepo.cs" />
+    <Compile Include="Repo\KonfigurasyonRepo.cs" />
     <Compile Include="Repo\KullaniciRepo.cs" />
+    <Compile Include="Repo\MusteriRepo.cs" />
+    <Compile Include="Repo\PersonelRepo.cs" />
+    <Compile Include="Repo\RefDataDetayRepo.cs" />
+    <Compile Include="Repo\RefDataRepo.cs" />
+    <Compile Include="Repo\RefDetaySiparisSeriRepo.cs" />
+    <Compile Include="Repo\YetkiRepo.cs" />
+    <Compile Include="Repo\SayacRepo.cs" />
+    <Compile Include="Repo\SiparisSeriRepo.cs" />
+    <Compile Include="Repo\TeslimatKotaRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

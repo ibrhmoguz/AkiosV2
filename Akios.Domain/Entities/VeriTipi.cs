@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Akios.Domain.Entities
 {
-    public class VeriTipi
+    public enum VeriTipi
     {
-        public int Id { get; set; }
-        public string Adi { get; set; }
+        String = 1,
+        Integer = 2,
+        Date = 3,
+        DateTime = 4,
+        Decimal = 5,
+        Boolean = 6
     }
 }

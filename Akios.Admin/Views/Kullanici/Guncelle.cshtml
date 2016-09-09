@@ -1,0 +1,62 @@
+﻿@model Akios.Domain.Entities.Kullanici
+
+@{
+    ViewBag.Title = "Kullanıcı Bilgisi";
+    ViewBag.Description = "Sistemde tanımlı kullanıcı bilgisi görüntülenir.";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Guncelle", "Kullanici", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-user-plus"></i> <h3 class="box-title">@Model.KullaniciAdi</h3>
+                </div>
+                <form role="form">
+                    <div class="box-body">
+                        @Html.HiddenFor(m => m.KullaniciId)
+                        @foreach (var property in ViewData.ModelMetadata.Properties)
+                        {
+                            switch (property.PropertyName)
+                            {
+                                case "KullaniciId":
+                                case "FotoData":
+                                case "FotoMimeType":
+                                case "KayitTarihi":
+                                    // do nothing
+                                    break;
+                                default:
+                                    <div class="form-group">
+                                        <label>@(property.DisplayName ?? property.PropertyName)</label>
+
+                                        @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                                        @Html.ValidationMessage(property.PropertyName)
+                                    </div>
+                                    break;
+                            }
+                        }
+                        <div class="form-group">
+                            <div style="position: relative;">
+                                <label>Fotoğraf</label>
+                                <a class='btn' href='javascript:;'>
+                                    Choose File...
+                                    <input type="file" name="Image" size="40"
+                                           style="position: absolute; z-index: 2; top: 0; left: 0; filter: alpha(opacity=0); opacity: 0; background-color: transparent; color: transparent;"
+                                           onchange='$("#upload-file-info").html($(this).val());'>
+                                </a>
+                                <span class='label  label-info' id="upload-file-info"></span>
+                            </div>
+                            <img class="img-circle" width="150" height="150" src="@Url.Action("FotoYukle", "Kullanici", new { Model.KullaniciId })" />
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}

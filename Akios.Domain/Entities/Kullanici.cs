@@ -8,7 +8,7 @@ namespace Akios.Domain.Entities
 {
     public class Kullanici
     {
-        public int? KullaniciId { get; set; }
+        public int KullaniciId { get; set; }
         public string KullaniciAdi { get; set; }
         public string Sifre { get; set; }
         public string Adi { get; set; }
@@ -17,5 +17,6 @@ namespace Akios.Domain.Entities
         public DateTime KayitTarihi { get; set; }
         public byte[] FotoData { get; set; }
         public string FotoMimeType { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
