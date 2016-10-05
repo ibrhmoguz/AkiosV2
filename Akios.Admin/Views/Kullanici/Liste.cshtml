@@ -1,11 +1,9 @@
 ﻿@model Akios.Admin.Models.KullaniciListViewModel
-
 @{
     ViewBag.Title = "Kullanıcılar";
     ViewBag.Description = "Sistemde tanımlı kullanıcıları listeler.";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
-
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
@@ -20,14 +18,8 @@
                             <th>Kullanıcı Adı</th>
                             <th>Adı</th>
                             <th>Soyadı</th>
-                            @if (Model.kullaniciYetkileri.KullaniciDegistirme)
-                            {
-                                <th style="width:8%"></th>
-                            }
-                            @if (Model.kullaniciYetkileri.KullaniciSilme)
-                            {
-                                <th style="width:8%"></th>
-                            }
+                            <th style="width:8%"></th>
+                            <th style="width:8%"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,26 +30,14 @@
                                 <td>@p.KullaniciAdi</td>
                                 <td>@p.Adi</td>
                                 <td>@p.Soyadi</td>
-                                @if (Model.kullaniciYetkileri.KullaniciDegistirme)
-                                {
-                                    <td>
-                                        @using (Html.BeginForm("GuncelleView", "Kullanici"))
-                                        {
-                                            @Html.Hidden("kullaniciId", @p.KullaniciId)
-                                            <input type="submit" class="btn btn-block btn-info" value="Düzenle" />
-                                        }
-                                    </td>
-                                }
-                                @if (Model.kullaniciYetkileri.KullaniciSilme)
-                                {
-                                    <td>
-                                        @using (Html.BeginForm("Sil", "Kullanici"))
-                                        {
-                                            @Html.Hidden("Id", @p.KullaniciId)
-                                            <input type="submit" class="btn btn-block btn-danger" value="Sil" />
-                                        }
-                                    </td>
-                                }
+                                <td>
+                                    @Html.Hidden("kullaniciId", @p.KullaniciId)
+                                    <input type="submit" class="btn btn-block btn-info" value="Düzenle" />
+                                </td>
+                                <td>
+                                    @Html.Hidden("Id", @p.KullaniciId)
+                                    <input type="submit" class="btn btn-block btn-danger" value="Sil" />
+                                </td>
                             </tr>
                         }
                     </tbody>

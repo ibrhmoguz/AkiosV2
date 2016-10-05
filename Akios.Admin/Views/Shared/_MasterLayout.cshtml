@@ -1,9 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -20,30 +18,29 @@
     <link rel="stylesheet" href="~/Content/CSS/AdminLTE.min.css">
     <link rel="stylesheet" href="~/Content/CSS/skin-blue.min.css">
     <link href="~/Content/CSS/datepicker3.css" rel="stylesheet" />
-
     <!-- REQUIRED JS SCRIPTS -->
     <!-- jQuery 2.2.0 -->
-    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <script src="~/Scripts/Core/jquery-2.2.0.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Core/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="~/Scripts/app.min.js"></script>
-    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/Core/app.min.js"></script>
+    <script src="~/Scripts/Core/bootstrap-datepicker.js"></script>
+
+    <!-- App Main-->
+    <script src="~/Scripts/App/main.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
         <!-- Main Header -->
         <header class="main-header">
-
             <!-- Logo -->
             <a href="" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>Akios</b></span>
+                <span class="logo-mini"><b></b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Akios</b></span>
+                <span class="logo-lg"><b></b></span>
             </a>
-
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
@@ -59,7 +56,6 @@
                 </div>
             </nav>
         </header>
-
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
@@ -88,7 +84,6 @@
             </section>
             <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -100,6 +95,8 @@
             </section>
             <!-- Main content -->
             <section class="content">
+                <a id="TestButton" role="button">Test 123</a>
+                <div id="mainContentDiv"></div>
                 @RenderBody()
             </section>
         </div>
@@ -108,10 +105,10 @@
         <footer class="main-footer">
             <!-- To the right -->
             <div class="pull-right hidden-xs">
-                STS
+                <a href="#">Akıllı İş Yönetim Sistemi - AKİOS</a>
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2016 <a href="#">Akıllı İş Yönetim sistemi - AKİOS</a>.</strong> Tüm hakları saklıdır.
+            <strong>Copyright &copy; 2016 .</strong> Tüm hakları saklıdır.
         </footer>
     </div>
 </body>

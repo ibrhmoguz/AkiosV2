@@ -1,15 +1,21 @@
 ﻿@model Akios.Domain.Entities.KullaniciYetkileri
-
 @{
     Layout = null;
 }
 
 
-<!-- Optionally, you can add icons to the links -->
-@*<li class="active"><a href="/Kullanici/Liste"><i class="fa fa-users"></i> <span>Kullanıcılar</span></a></li>
-    <li><a href="/Kullanici/Ekle"><i class="fa fa-user"></i> <span>Kullanıcı Ekle</span></a></li>*@
+<script type="text/javascript">
+    //ShowLoadingAnimation();
+</script>
 
 <li class="header">YÖNETİM</li>
+<li class="treeview">
+    <a href="#"><i class="fa fa-users"></i> <span>Müşteriler</span><i class="fa fa-angle-left pull-right"></i></a>
+    <ul class="treeview-menu">
+        <li><a href="/Musteri/Liste"><i class="fa fa-users"></i> <span>Müşteri Listesi</span></a></li>
+        <li><a href="/Musteri/Ekle"><i class="fa fa-user-plus"></i> <span>Ekle</span></a></li>
+    </ul>
+</li>
 <li class="treeview">
     <a href="#"><i class="fa fa-users"></i> <span>Kullanıcılar</span><i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
@@ -24,14 +30,6 @@
         <li><a href="/Grup/Ekle"><i class="fa fa-plus"></i> <span>Ekle</span></a></li>
     </ul>
 </li>
-
-<li class="treeview">
-    <a href="#"><i class="fa fa-users"></i> <span>Müşteriler</span><i class="fa fa-angle-left pull-right"></i></a>
-    <ul class="treeview-menu">
-        <li><a href="/Musteri/Liste"><i class="fa fa-users"></i> <span>Müşteri Listesi</span></a></li>
-        <li><a href="/Musteri/Ekle"><i class="fa fa-user-plus"></i> <span>Ekle</span></a></li>
-    </ul>
-</li>
 <li class="treeview">
     <a href="#"><i class="fa fa-users"></i> <span>Personeller</span><i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
@@ -39,6 +37,4 @@
         <li><a href="/Personel/Ekle"><i class="fa fa-user-plus"></i> <span>Ekle</span></a></li>
     </ul>
 </li>
-
-
 

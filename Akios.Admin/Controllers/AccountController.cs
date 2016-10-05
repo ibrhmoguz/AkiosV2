@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using Akios.Admin.Infrastructure.Abstract;
 using Akios.Domain.Interface;
 using Akios.Admin.Models;
 using Akios.Domain.Entities;
+using Newtonsoft.Json;
 
 namespace Akios.Admin.Controllers
 {
@@ -63,6 +65,34 @@ namespace Akios.Admin.Controllers
             Session.Clear();
             authProvider.SignOut();
             return RedirectToAction("Login", "Account", null);
+        }
+
+        [AllowAnonymous]
+        public JsonResult IsAuthenticated()
+        {
+            throw new Exception("Authentication failed.");
+            if (Request.IsAuthenticated)
+            {
+                var result = new
+                {
+                    Tip = "Bilgi",
+                    Data = "",
+                    Action = "Success"
+                };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var result = new
+                {
+                    Tip = "bilgi",
+                    Data = "Bilgilerinize Ulaşılamıyor Lütfen Tekrar Giriş Yapınız.",
+                    Action = "Fail"
+                };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

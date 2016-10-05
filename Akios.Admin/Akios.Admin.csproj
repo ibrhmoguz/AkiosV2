@@ -164,18 +164,20 @@
     <Content Include="Content\CSS\font-awesome.min.css" />
     <Content Include="Content\CSS\ionicons.min.css" />
     <Content Include="Content\CSS\skin-blue.min.css" />
+    <Content Include="Content\Image\loader.gif" />
     <Content Include="Content\Image\userProfile.jpg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\ai.0.15.0-build58334.js" />
-    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Scripts\app.min.js" />
-    <Content Include="Scripts\bootstrap-datepicker.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.0.js" />
-    <Content Include="Scripts\jquery-2.2.0.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\App\main.js" />
+    <Content Include="Scripts\Core\ai.0.15.0-build58334.js" />
+    <Content Include="Scripts\Core\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\Core\app.min.js" />
+    <Content Include="Scripts\Core\bootstrap-datepicker.js" />
+    <Content Include="Scripts\Core\bootstrap.js" />
+    <Content Include="Scripts\Core\bootstrap.min.js" />
+    <None Include="Scripts\Core\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\Core\jquery-2.2.0.js" />
+    <Content Include="Scripts\Core\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\Core\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -227,7 +229,7 @@
     <Content Include="Views\Default\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="Scripts\Core\jquery-2.2.0.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
