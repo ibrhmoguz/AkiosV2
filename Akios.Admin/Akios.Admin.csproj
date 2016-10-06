@@ -163,8 +163,10 @@
     <Content Include="Content\CSS\datepicker3.css" />
     <Content Include="Content\CSS\font-awesome.min.css" />
     <Content Include="Content\CSS\ionicons.min.css" />
+    <Content Include="Content\CSS\jquery-ui.min.css" />
     <Content Include="Content\CSS\skin-blue.min.css" />
     <Content Include="Content\Image\loader.gif" />
+    <Content Include="Content\Image\loading.gif" />
     <Content Include="Content\Image\userProfile.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\App\main.js" />
@@ -177,6 +179,7 @@
     <None Include="Scripts\Core\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\Core\jquery-2.2.0.js" />
     <Content Include="Scripts\Core\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\Core\jquery-ui.min.js" />
     <Content Include="Scripts\Core\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

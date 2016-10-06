@@ -1,4 +1,7 @@
-﻿$(document).bind("ajaxSend", function () {
+﻿
+/******* COMMON FUNCTIONS *************/
+
+$(document).bind("ajaxSend", function () {
     ShowLoadingAnimation();
 }).bind("ajaxComplete", function () {
     HideLoadingAnimation();
@@ -9,46 +12,53 @@
 
 
 function ShowLoadingAnimation() {
-    var panel = document.createElement("div");
-    $(panel).attr("id", "loadingDiv");
-    $(panel).height(document.documentElement.clientHeight);
-    $(panel).width(document.documentElement.clientWidth);
-    $(panel).css("background-color", "black");
-    $(panel).css("position", "fixed");
-    $(panel).css("top", 0);
-    $(panel).css("left", 0);
-    $(panel).css("z-index", "1200");
-    $(panel).css({ opacity: 0.4 });
-
-    var animationPanel = document.createElement("div");
-    animationPanel.innerHTML = "<img src='Content/Image/loader.gif' style='position:relative' alt='' />";
-    $(animationPanel).css("position", "relative");
-    var top = ($(panel).height()) / 2 - 200;
-    var left = ($(panel).width()) / 2 - 150;
-    $(animationPanel).css("top", top);
-    $(animationPanel).css("left", left);
-    $(panel).html(animationPanel);
-    $("body").append($(panel));
+    $('#LoadingDiv').modal();
 }
 
 function HideLoadingAnimation() {
-    $("#loadingDiv").remove();
+    $("#LoadingDiv").modal('hide');
 }
 
 function ShowAjaxError(event, jqxhr, settings, thrownError) {
-    alert(jqxhr.responseText);
+    MessageBox(thrownError + " " + jqxhr.responseText, "Error");
 }
+
+function MessageBox(msj, title) {
+    if (title == "Info") {
+        SetMessageBoxValues("Bilgi", msj, "box box-solid box-primary", "icon fa fa-info", "btn btn-primary");
+    }
+    else if (title == "Error") {
+        SetMessageBoxValues("Hata", msj, "box box-solid box-danger", "icon fa fa-ban", "btn btn-danger");
+    }
+    else if (title == "Warning") {
+        SetMessageBoxValues("Uyarı", msj, "box box-solid box-warning", "icon fa fa-warning", "btn btn-warning");
+    }
+    else if (title == "Success") {
+        SetMessageBoxValues("Başarı", msj, "box box-solid box-success", "icon fa fa-check", "btn btn-success");
+    }
+
+    $('#MessageBoxDiv').modal();
+}
+
+function SetMessageBoxValues(headerText, msj, solidClass, iconClass, buttonClass) {
+    $('#MessageBoxHeaderContent').text(headerText);
+    $('#MessageBoxBodyContent').text(msj);
+    $('#MessageBoxSolid').addClass(solidClass);
+    $('#MessageBoxIcon').addClass(iconClass);
+    $('#MessageBoxCloseButton').addClass(buttonClass);
+}
+
+/******* COMMON FUNCTIONS *************/
+
 
 /****** Document READY **********/
 
 $(document).ready(function () {
     $("#TestButton").click(function () {
+        //MessageBox("Test 23423 234234", "Warning");
         AuthenticationKontrolu();
     });
 });
-
-
-/****** Document READY **********/
 
 function AuthenticationKontrolu() {
     $.ajax({

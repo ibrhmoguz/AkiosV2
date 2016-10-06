@@ -97,6 +97,25 @@
             <section class="content">
                 <a id="TestButton" role="button">Test 123</a>
                 <div id="mainContentDiv"></div>
+                <div id="MessageBoxDiv" class="modal-dialog" style="display: none; z-index: 3000">
+                    <div id="MessageBoxSolid">
+                        <div class="box-header">
+                            <h3 class="box-title">
+                                <i id="MessageBoxIcon"></i> <i id="MessageBoxHeaderContent"></i>
+                            </h3>
+                        </div>
+                        <div id="MessageBoxBodyContent" class="modal-body" style="overflow-y:auto; height: 100px">
+                        </div>
+                        <div class="modal-footer">
+                            <button id="MessageBoxCloseButton" type="button" data-dismiss="modal">Tamam</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="LoadingDiv" class="modal-dialog" style="display: none; z-index: 3000; text-align:center">
+                    <img src="~/Content/Image/loader.gif" style='position:relative' alt='' />
+                    <br />
+                    <span style="color: white; font-size: medium">Yükleniyor...</span>
+                </div>
                 @RenderBody()
             </section>
         </div>
@@ -105,11 +124,12 @@
         <footer class="main-footer">
             <!-- To the right -->
             <div class="pull-right hidden-xs">
-                <a href="#">Akıllı İş Yönetim Sistemi - AKİOS</a>
+                <strong>Copyright &copy; 2016 .</strong> Tüm hakları saklıdır.
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2016 .</strong> Tüm hakları saklıdır.
+            <a href="#">Akıllı İş Yönetim Sistemi - AKİOS</a>
         </footer>
     </div>
+
 </body>
 </html>
