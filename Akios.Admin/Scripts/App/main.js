@@ -68,13 +68,13 @@ function AuthenticationKontrolu() {
         url: 'Account/IsAuthenticated',
         success: function (msg) {
             if (msg.Action == "Fail") {
-                //FailAuthentication();
+                FailAuthentication();
                 return false;
             }
             else { return true; }
         },
-        error: function (req, status, error) {
-            //FailAuthentication();
+        error: function () {
+            FailAuthentication();
             return false;
         }
     });
@@ -84,4 +84,21 @@ function AuthenticationKontrolu() {
 
 function FailAuthentication() {
     window.location.href = 'Account/Login';
+}
+
+function PageLoad(url) {
+
+    $("#mainContentDiv").html('');
+    if (!AuthenticationKontrolu())
+        return;
+
+    $.ajax({
+        type: 'GET',
+        async: true,
+        url: url,
+        cache: false,
+        success: function (msg) {
+            $("#mainContentDiv").html(msg);
+        }
+    });
 }

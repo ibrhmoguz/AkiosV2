@@ -70,7 +70,6 @@ namespace Akios.Admin.Controllers
         [AllowAnonymous]
         public JsonResult IsAuthenticated()
         {
-            throw new Exception("Authentication failed.");
             if (Request.IsAuthenticated)
             {
                 var result = new
