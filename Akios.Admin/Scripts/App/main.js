@@ -88,9 +88,8 @@ function FailAuthentication() {
 
 function PageLoad(url) {
 
-    $("#mainContentDiv").html('');
-    if (!AuthenticationKontrolu())
-        return;
+    //if (!AuthenticationKontrolu())
+    //    return;
 
     $.ajax({
         type: 'GET',
