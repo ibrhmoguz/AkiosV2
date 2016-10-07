@@ -38,16 +38,6 @@ namespace Akios.Admin.Controllers
             return View(model);
         }
 
-        public FileContentResult GetFoto(int Id)
-        {
-            Kullanici k = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId.Equals(Id));
-            if (k != null)
-            {
-                return File(k.FotoData, k.FotoMimeType);
-            }
-            return null;
-        }
-
         public ViewResult Ekle()
         {
             return View("Guncelle", new Kullanici());
@@ -102,7 +92,6 @@ namespace Akios.Admin.Controllers
             Kullanici k = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId.Equals(kullaniciId));
             if (k != null && k.FotoData != null)
             {
-
                 return File(k.FotoData, k.FotoMimeType);
             }
             return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");

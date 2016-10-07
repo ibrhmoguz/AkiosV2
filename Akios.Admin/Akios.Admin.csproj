@@ -146,6 +146,7 @@
     <Compile Include="Infrastructure\Concrete\FormsAuthProvider.cs" />
     <Compile Include="Infrastructure\Concrete\SessionExpireFilterAttribute.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\MusteriListViewModel.cs" />
     <Compile Include="Models\KullaniciListViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
@@ -160,6 +161,7 @@
     <Content Include="Content\CSS\bootstrap-theme.min.css" />
     <Content Include="Content\CSS\bootstrap.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\dataTables.bootstrap.css" />
     <Content Include="Content\CSS\datepicker3.css" />
     <Content Include="Content\CSS\font-awesome.min.css" />
     <Content Include="Content\CSS\ionicons.min.css" />
@@ -173,7 +175,6 @@
     <Content Include="Scripts\Core\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\Core\app.min.js" />
     <Content Include="Scripts\Core\bootstrap-datepicker.js" />
-    <Content Include="Scripts\Core\bootstrap.js" />
     <Content Include="Scripts\Core\bootstrap.min.js" />
     <Content Include="Content\fonts\ODelI1aHBYDBqgeIAH2zlC2Q8seG17bfDXYR_jUsrzg.woff2" />
     <Content Include="Content\fonts\ODelI1aHBYDBqgeIAH2zlNV_2ngZ8dMf8fLgjYEouxg.woff2" />
@@ -197,10 +198,15 @@
     <Content Include="Content\fonts\toadOcfmlt9b38dHJxOBGDRVvBvQIc1z78c__uoBcyI.woff2" />
     <Content Include="Content\fonts\toadOcfmlt9b38dHJxOBGD_j0nMiB9fPhg_k1wdK2h0.woff2" />
     <None Include="Scripts\Core\jquery-2.2.0.intellisense.js" />
-    <Content Include="Scripts\Core\jquery-2.2.0.js" />
+    <Content Include="Scripts\Core\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\Core\jquery-2.2.0.min.js" />
     <Content Include="Scripts\Core\jquery-ui.min.js" />
+    <Content Include="Scripts\Core\jquery.dataTables.ColumnFilter.js" />
+    <Content Include="Scripts\Core\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Core\jquery.resizable.js" />
+    <Content Include="Scripts\Core\jquery.sortable.js" />
     <Content Include="Scripts\Core\modernizr-2.6.2.js" />
+    <Content Include="Views\Musteri\musteri.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
