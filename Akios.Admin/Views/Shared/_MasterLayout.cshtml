@@ -6,30 +6,35 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Akios | Admin</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link href="~/Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/Content/CSS/font-awesome.min.css">
+    <link href="~/Content/CSS/font-awesome.min.css" rel="stylesheet" />
     <!-- Ionicons -->
-    <link rel="stylesheet" href="~/Content/CSS/ionicons.min.css">
+    <link href="~/Content/CSS/ionicons.min.css" rel="stylesheet" />
+    <!-- DataTable style -->
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Content/CSS/AdminLTE.min.css">
     <link rel="stylesheet" href="~/Content/CSS/skin-blue.min.css">
-    <link href="~/Content/CSS/datepicker3.css" rel="stylesheet" />
-    
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 
     <!-- REQUIRED JS SCRIPTS -->
     <!-- jQuery 2.2.0 -->
     <script src="~/Scripts/Core/jquery-2.2.0.min.js"></script>
+    <script src="~/Scripts/Core/jquery-ui.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
     <script src="~/Scripts/Core/bootstrap.min.js"></script>
-    
+
     <!-- jQuery datatables -->
-    <script src="~/Scripts/Core/jquery.dataTables.ColumnFilter.js"></script>
-    <script src="~/Scripts/Core/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/Core/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
 
     <!-- AdminLTE App -->
     <script src="~/Scripts/Core/app.min.js"></script>
@@ -96,33 +101,15 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    @ViewBag.Title
-                    <small>@ViewBag.Description</small>
+                <h1 id="masterTitle">
+                    <small><span id="masterDescription"></span></small>
                 </h1>
             </section>
+
             <!-- Main content -->
             <section class="content">
+
                 <div id="mainContentDiv"></div>
-                <div id="MessageBoxDiv" class="modal-dialog" style="display: none; z-index: 3000">
-                    <div id="MessageBoxSolid">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                <i id="MessageBoxIcon"></i> <i id="MessageBoxHeaderContent"></i>
-                            </h3>
-                        </div>
-                        <div id="MessageBoxBodyContent" class="modal-body" style="overflow-y:auto; height: 100px">
-                        </div>
-                        <div class="modal-footer">
-                            <button id="MessageBoxCloseButton" type="button" data-dismiss="modal">Tamam</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="LoadingDiv" class="modal-dialog" style="display: none; z-index: 3000; text-align:center">
-                    <img src="~/Content/Image/loader.gif" style='position:relative' alt='' />
-                    <br />
-                    <span style="color: white; font-size: medium">Yükleniyor...</span>
-                </div>
                 @RenderBody()
             </section>
         </div>
@@ -136,6 +123,29 @@
             <!-- Default to the left -->
             <a href="#">Akıllı İş Yönetim Sistemi - AKİOS</a>
         </footer>
+    </div>
+    <div id="MessageBoxDiv" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div id="MessageBoxSolid">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i id="MessageBoxIcon"></i> <i id="MessageBoxHeaderContent"></i>
+                    </h3>
+                </div>
+                <div id="MessageBoxBodyContent" class="modal-body" style="overflow-y:auto; height: 100px">
+                </div>
+                <div class="modal-footer">
+                    <button id="MessageBoxCloseButton" type="button" data-dismiss="modal">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="LoadingDiv" class="modal" role="dialog">
+        <div class="modal-dialog" style="text-align: center">
+            <img src="~/Content/Image/loader.gif" alt='' />
+            <br />
+            <span style="color: white; font-size: medium">Yükleniyor...</span>
+        </div>
     </div>
 </body>
 </html>

@@ -12,7 +12,7 @@ $(document).bind("ajaxSend", function () {
 
 
 function ShowLoadingAnimation() {
-    $('#LoadingDiv').modal();
+    $('#LoadingDiv').modal({ position: 'center' });
 }
 
 function HideLoadingAnimation() {
@@ -37,7 +37,7 @@ function MessageBox(msj, title) {
         SetMessageBoxValues("Başarı", msj, "box box-solid box-success", "icon fa fa-check", "btn btn-success");
     }
 
-    $('#MessageBoxDiv').modal();
+    $("#MessageBoxDiv").modal({ position: 'center' });
 }
 
 function SetMessageBoxValues(headerText, msj, solidClass, iconClass, buttonClass) {
@@ -76,8 +76,8 @@ function FailAuthentication() {
 
 function PageLoad(url) {
 
-    //if (!AuthenticationKontrolu())
-    //    return;
+    if (!AuthenticationKontrolu())
+        return;
 
     $.ajax({
         type: 'GET',
@@ -96,20 +96,20 @@ function PageLoad(url) {
 $.extend(true, $.fn.dataTable.defaults, {
     "oLanguage": {
         "sSearch": "Arama ",
-        "sProcessing": "&#304;&#351;lem yap&#305;l&#305;yor...",
+        "sProcessing": "Yükleniyor...",
         "sLengthMenu": "<span class='showentries'>Satır Sayısı:</span> _MENU_  ",
-        "sZeroRecords": "Hi&#231; kay&#305;t bulunamad&#305;",
-        "sEmptyTable": "Hi&#231; kay&#305;t bulunamad&#305;",
+        "sZeroRecords": "Hiç kayıt bulunamadı",
+        "sEmptyTable": "Hiç kayıt bulunamadı",
         "sLoadingRecords": "Bekleyin...",
-        "sInfo": "G&#246;sterilen _START_ ile _END_ Toplam _TOTAL_  Kay&#305;t Vard&#305;r",
-        "sInfoEmpty": "G&#246;sterilen 0 to 0 of 0 Kay&#305;t",
-        "sInfoFiltered": "(Filtreleme d&#305;&#351;&#305;nda _MAX_ Toplam Kay&#305;t Vard&#305;r)",
+        "sInfo": "Toplam _TOTAL_ Kayıt İçinden _START_ ile _END_ Arası Kayıtlar Gösteriliyor.",
+        "sInfoEmpty": "Gösterilen Kayıt Yoktur.",
+        "sInfoFiltered": "(Filtreleme Dışında _MAX_ Toplam Kayıt Vardır)",
         "sInfoPostFix": "",
         "sInfoThousands": ",",
         "oPaginate": {
-            "sFirst": "&#304;lk",
+            "sFirst": "İlk",
             "sPrevious": "Geri",
-            "sNext": "&#304;leri",
+            "sNext": "İleri",
             "sLast": "Son"
         }
     },
@@ -121,7 +121,7 @@ $.extend(true, $.fn.dataTable.defaults, {
     "autoWidth": false,
     "sPaginationType": "full_numbers",
     'bServerSide': true,
-    "bFilter": false,
+    'bProcessing': true,
     "sDom": '<"tablePars"fl>t<"tableFooter"ip>',
     "fnPreDrawCallback": function () { ShowLoadingAnimation(); },
     "fnDrawCallback": function () { HideLoadingAnimation(); }
