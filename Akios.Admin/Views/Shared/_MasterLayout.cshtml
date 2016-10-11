@@ -43,7 +43,7 @@
     <!-- App Main-->
     <script src="~/Scripts/App/main.js"></script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
@@ -101,14 +101,13 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1 id="masterTitle">
+                <h1>
+                    <span id="masterTitle"></span>
                     <small><span id="masterDescription"></span></small>
                 </h1>
             </section>
-
             <!-- Main content -->
             <section class="content">
-
                 <div id="mainContentDiv"></div>
                 @RenderBody()
             </section>

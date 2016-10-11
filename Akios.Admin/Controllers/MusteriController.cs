@@ -55,18 +55,25 @@ namespace Akios.Admin.Controllers
             var iSearch = Request["sSearch"];
             var iSortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
             var iSortDirection = Request["sSortDir_0"];
+            var totalRecords = musteriRepo.Musteriler.Count();
 
+            if (iDisplayLength == -1)
+            {
+                iDisplayLength = totalRecords;
+            }
+            
             var filteredList = musteriRepo.Musteriler;
             if (!string.IsNullOrEmpty(iSearch))
             {
-                filteredList = musteriRepo.Musteriler.Where(x => x.Adi.Contains(iSearch) ||
-                                                   x.Adres.Contains(iSearch) ||
-                                                   x.Faks.Contains(iSearch) ||
-                                                   x.Kod.Contains(iSearch) ||
-                                                   x.Mail.Contains(iSearch) ||
-                                                   x.Mobil.Contains(iSearch) ||
-                                                   x.Tel.Contains(iSearch) ||
-                                                   x.YetkiliKisi.Contains(iSearch));
+                var search = iSearch.ToLower();
+                filteredList = musteriRepo.Musteriler.Where(x => x.Adi.ToLower().Contains(search) ||
+                                                   x.Adres.ToLower().Contains(search) ||
+                                                   x.Faks.ToLower().Contains(search) ||
+                                                   x.Kod.ToLower().Contains(search) ||
+                                                   x.Mail.ToLower().Contains(search) ||
+                                                   x.Mobil.ToLower().Contains(search) ||
+                                                   x.Tel.ToLower().Contains(search) ||
+                                                   x.YetkiliKisi.ToLower().Contains(search));
             }
 
             Func<Musteri, string> orderFunc = (item => iSortColumnIndex == 1
@@ -82,14 +89,14 @@ namespace Akios.Admin.Controllers
                                 : iSortColumnIndex == 6
                                     ? item.Mail
                                     : item.Web);
-
+            
             var list = filteredList.Skip(iDisplayStart).Take(iDisplayLength);
             var orderedList = (iSortDirection == "asc") ? list.OrderBy(orderFunc).ToList() : list.OrderByDescending(orderFunc).ToList();
 
             var result = new
             {
-                iTotalRecords = musteriRepo.Musteriler.Count(),
-                iTotalDisplayRecords = orderedList.Count(),
+                iTotalRecords = totalRecords,
+                iTotalDisplayRecords = totalRecords,
                 aaData = (from item in orderedList
                           select new[] 
                             {
