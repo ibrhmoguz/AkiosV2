@@ -13,31 +13,28 @@
     function LoadListData() {
         $("#tableMusteriler").dataTable({
             "sAjaxSource": "Musteri/JsonList",
+            "aaSorting": [[1,'asc']],
             "aoColumnDefs": [
             {
                 "aTargets": [0],
-                "bVisible": false
+                "bSortable": false,
+                "render": function (data, type, row) {
+                    return '<img class="img-circle" width="50" height="50" src="/Musteri/LogoYukle?musteriId=' + row[0] + '"/>';
+                }
             },
             {
-                "mRender": function (data, type, row) {
-                    return row[0] + row[1]; //"<img class='img-circle' width='50' height='50' src='/Musteri/LogoYukle?musteriId="+row[0]+"/>";
-                },
-                "aTargets": [1],
-                "bSortable": false
-            },
-            {
-                "mRender": function (data, type, row) {
-                    return "<input type='button' class='btn btn-block btn-info' value='Düzenle' MusteriId = " + row[0] + "/>";
-                },
                 "aTargets": [9],
-                "bSortable": false
+                "bSortable": false,
+                "mRender": function (data, type, row) {
+                    return '<input type="button" class="btn btn-block btn-info" value="Düzenle" MusteriId ="' + row[0] + '"/>';
+                }
             },
             {
-                "mRender": function (data, type, row) {
-                    return "<input type='button' class='btn btn-block btn-danger' value='Sil' MusteriId = " + row[0] + "/>";
-                },
                 "aTargets": [10],
-                "bSortable": false
+                "bSortable": false,
+                "mRender": function (data, type, row) {
+                    return '<input type="button" class="btn btn-block btn-danger" value="Sil" MusteriId ="' + row[0] + '"/>';
+                }
             }]
         });
     }
@@ -49,10 +46,10 @@
                     <i class="fa fa-users"></i><h3 class="box-title">Müşteri Listesi</h3>
                 </div>*@
             <div class="box-body">
-                <table id="tableMusteriler" class="table table-bordered table-striped">
+                <table id="tableMusteriler" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Logo</th>
+                            <th></th>
                             <th>Kod-Müşteri</th>
                             <th>Yetkili Kişi</th>
                             <th>Adres</th>
@@ -61,8 +58,8 @@
                             <th>Mobile</th>
                             <th>Mail</th>
                             <th>Web</th>
-                            <th style="width:5%"></th>
-                            <th style="width:5%"></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody></tbody>

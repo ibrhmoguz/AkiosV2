@@ -22,5 +22,7 @@ namespace Akios.Domain.Entities
         public string Mail { get; set; }
         public byte[] LogoData { get; set; }
         public string LogoMimeType { get; set; }
+        public DateTime KayitTarihi { get; set; }
+        public string KayitEden { get; set; }
     }
 }

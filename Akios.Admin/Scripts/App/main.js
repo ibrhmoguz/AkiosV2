@@ -113,6 +113,7 @@ $.extend(true, $.fn.dataTable.defaults, {
             "sLast": "Son"
         }
     },
+    "bSort": true,
     "processing": true,
     "serverSide": true,
     "filter": true,
@@ -122,7 +123,7 @@ $.extend(true, $.fn.dataTable.defaults, {
     "info": true,
     "lengthChange": true,
     "paging": true,
-    "bAutoWidth": true,
+    "bAutoWidth": false,
     "pagingType": "full_numbers",
     "fnPreDrawCallback": function () { ShowLoadingAnimation(); },
     "fnDrawCallback": function () { HideLoadingAnimation(); }
