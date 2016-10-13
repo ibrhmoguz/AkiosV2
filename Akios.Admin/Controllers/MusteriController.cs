@@ -16,26 +16,13 @@ namespace Akios.Admin.Controllers
     public class MusteriController : Controller
     {
         private IMusteriRepo musteriRepo;
-        public int PageSize = 5;
         public MusteriController(IMusteriRepo mr)
         {
             musteriRepo = mr;
         }
-        public ViewResult Liste(int page = 1)
+        public ViewResult Liste()
         {
-            //var pagedMusteriler = musteriRepo.Musteriler.OrderBy(p => p.MusteriId).Skip((page - 1) * PageSize).Take(PageSize);
-            var model = new MusteriListViewModel()
-            {
-                Musteriler = null,
-                PagingInfo = new PagingInfo()
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = musteriRepo.Musteriler.Count()
-                },
-                kullaniciYetkileri = Session["CurrentUser_Auths"] as KullaniciYetkileri
-            };
-            return View(model);
+            return View();
         }
 
         public FileContentResult LogoYukle(int musteriId)

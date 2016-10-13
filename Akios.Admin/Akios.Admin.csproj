@@ -136,10 +136,12 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\GrupController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\MusteriController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
+    <Compile Include="Controllers\SiparisSeriController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -437,6 +439,8 @@
     <Content Include="Views\Kullanici\Liste.cshtml" />
     <Content Include="Views\Musteri\Liste.cshtml" />
     <Content Include="Views\Personel\Liste.cshtml" />
+    <Content Include="Views\SiparisSeri\Liste.cshtml" />
+    <Content Include="Views\Grup\Liste.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

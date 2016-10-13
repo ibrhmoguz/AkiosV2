@@ -7,6 +7,7 @@ using Akios.Admin.Infrastructure.Concrete;
 using Akios.Admin.Models;
 using Akios.Domain.Entities;
 using Akios.Domain.Interface;
+using Newtonsoft.Json;
 
 namespace Akios.Admin.Controllers
 {
@@ -14,28 +15,84 @@ namespace Akios.Admin.Controllers
     [SessionExpireFilter]
     public class KullaniciController : Controller
     {
-        IKullaniciRepo kullaniciRepo;
-        public int PageSize = 5;
-        public KullaniciController(IKullaniciRepo kr)
+        private IKullaniciRepo kullaniciRepo;
+        private IMusteriRepo musteriRepo;
+        public KullaniciController(IKullaniciRepo kr, IMusteriRepo mr)
         {
             kullaniciRepo = kr;
+            musteriRepo = mr;
         }
 
-        public ViewResult Liste(int page = 1)
+        public ViewResult Liste()
         {
-            var pagedKullanicilar = kullaniciRepo.Kullanicilar.OrderBy(p => p.KullaniciId).Skip((page - 1) * PageSize).Take(PageSize);
-            var model = new KullaniciListViewModel()
+            return View();
+        }
+
+        public string JsonList()
+        {
+            var iDisplayLength = int.Parse(Request["iDisplayLength"]);
+            var iDisplayStart = int.Parse(Request["iDisplayStart"]);
+            var iSearch = Request["sSearch"];
+            var iSortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
+            var iSortDirection = Request["sSortDir_0"];
+
+            var joinedList = from k in kullaniciRepo.Kullanicilar
+                             join m in musteriRepo.Musteriler on k.MusteriId equals m.MusteriId into jList
+                             from jm in jList.DefaultIfEmpty()
+                             select new Tuple<string, string, string, string, string>(
+                                 k.KullaniciAdi,
+                                 k.Adi,
+                                 k.Soyadi,
+                                 (jm == null) ? string.Empty : jm.Adi,
+                                 k.KullaniciId.ToString());
+
+            if (!string.IsNullOrEmpty(iSearch))
             {
-                Kullanicilar = pagedKullanicilar,
-                PagingInfo = new PagingInfo()
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = kullaniciRepo.Kullanicilar.Count()
-                },
-                kullaniciYetkileri = Session["CurrentUser_Auths"] as KullaniciYetkileri
+                var search = iSearch.ToLower();
+                joinedList = joinedList.Where(x => x.Item1.ToLower().Contains(search) ||
+                                                   x.Item2.ToLower().Contains(search) ||
+                                                   x.Item3.ToLower().Contains(search) ||
+                                                   x.Item4.ToLower().Contains(search));
+            }
+
+            var filteredList = joinedList.ToList();
+            var totalRecords = filteredList.Count();
+
+            if (iDisplayLength == -1)
+            {
+                iDisplayLength = totalRecords;
+            }
+
+            var list = filteredList.Skip(iDisplayStart).Take(iDisplayLength);
+
+            Func<Tuple<string, string, string, string, string>, string> orderFunc = (item => iSortColumnIndex == 1
+                ? item.Item1
+                : iSortColumnIndex == 2
+                    ? item.Item2
+                    : iSortColumnIndex == 3
+                        ? item.Item3
+                        : item.Item4);
+
+            var orderedList = (iSortDirection == "asc") ? list.OrderBy(orderFunc).ToList() : list.OrderByDescending(orderFunc).ToList();
+
+            var result = new
+            {
+                iTotalRecords = totalRecords,
+                iTotalDisplayRecords = totalRecords,
+                aaData = (from item in orderedList
+                          select new[] 
+                            {
+                                item.Item5, 
+                                item.Item1,
+                                item.Item2,
+                                item.Item3,
+                                item.Item4,
+                                "",
+                                ""
+                            })
             };
-            return View(model);
+
+            return JsonConvert.SerializeObject(result);
         }
 
         public ViewResult Ekle()
