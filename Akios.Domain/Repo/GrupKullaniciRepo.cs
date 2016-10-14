@@ -21,7 +21,7 @@ namespace Akios.Domain.Repo
             }
         }
 
-        public void GrupKullaniciKaydet(Entities.GrupKullanici g)
+        public void GrupKullaniciKaydet(GrupKullanici g)
         {
             var grupKullanici = context.GrupKullanicilar.Where(p => p.GrupId.Equals(g.GrupId) && p.KullaniciId.Equals(g.KullaniciId)).FirstOrDefault();
             if (grupKullanici == null)

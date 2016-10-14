@@ -137,11 +137,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\GrupController.cs" />
+    <Compile Include="Controllers\KonfigurasyonController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\MusteriController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
+    <Compile Include="Controllers\ReferansDataController.cs" />
     <Compile Include="Controllers\SiparisSeriController.cs" />
+    <Compile Include="Controllers\TeslimatKotaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -441,6 +444,9 @@
     <Content Include="Views\Personel\Liste.cshtml" />
     <Content Include="Views\SiparisSeri\Liste.cshtml" />
     <Content Include="Views\Grup\Liste.cshtml" />
+    <Content Include="Views\TeslimatKota\Liste.cshtml" />
+    <Content Include="Views\ReferansData\Liste.cshtml" />
+    <Content Include="Views\Konfigurasyon\Liste.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,7 +11,7 @@ namespace Akios.Domain.Entities
         public int TeslimatKotaId { get; set; }
         public int MusteriId { get; set; }
         public DateTime TeslimatTarihi { get; set; }
-        public int MaxTeslimatSayisi { get; set; }
+        public int? MaxTeslimatSayisi { get; set; }
         public bool TeslimatYapilacakMi { get; set; }
     }
 }
