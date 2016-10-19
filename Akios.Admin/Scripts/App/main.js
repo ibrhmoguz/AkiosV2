@@ -19,6 +19,10 @@ function HideLoadingAnimation() {
     $("#LoadingDiv").modal('hide');
 }
 
+function HideAddItemModalDialog() {
+    $("#addItemModalDialogDiv").modal('hide');
+}
+
 function ShowAjaxError(event, jqxhr, settings, thrownError) {
     MessageBox(thrownError + " " + jqxhr.responseText, "Error");
 }
@@ -86,6 +90,24 @@ function PageLoad(url) {
         cache: false,
         success: function (msg) {
             $("#mainContentDiv").html(msg);
+        }
+    });
+}
+
+function ModalLoad(url, baslik) {
+
+    if (!AuthenticationKontrolu())
+        return;
+
+    $.ajax({
+        type: 'GET',
+        async: true,
+        url: url,
+        cache: false,
+        success: function (msg) {
+            $("#addItemModalDialogBodyDiv").html(msg);
+            $("#addItemModalDialogHeader").html(baslik);
+            $("#addItemModalDialogDiv").modal({ position: 'center' });
         }
     });
 }

@@ -15,6 +15,8 @@
     <link href="~/Content/CSS/font-awesome.min.css" rel="stylesheet" />
     <!-- Ionicons -->
     <link href="~/Content/CSS/ionicons.min.css" rel="stylesheet" />
+    <!-- bootstrap datepicker -->
+    <link href="~/Content/CSS/datepicker3.css" rel="stylesheet" />
     <!-- DataTable style -->
     <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 
@@ -23,6 +25,8 @@
     <link rel="stylesheet" href="~/Content/CSS/skin-blue.min.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Select2 style -->
+    <link href="~/Content/CSS/select2.min.css" rel="stylesheet" />
 
 
     <!-- REQUIRED JS SCRIPTS -->
@@ -39,6 +43,9 @@
     <!-- AdminLTE App -->
     <script src="~/Scripts/Core/app.min.js"></script>
     <script src="~/Scripts/Core/bootstrap-datepicker.js"></script>
+    
+    <!-- Select2 plugin -->
+    <script src="~/Scripts/Core/select2.full.min.js"></script>
 
     <!-- App Main-->
     <script src="~/Scripts/App/main.js"></script>
@@ -144,6 +151,17 @@
             <img src="~/Content/Image/loader.gif" alt='' />
             <br />
             <span style="color: white; font-size: medium">Yükleniyor...</span>
+        </div>
+    </div>
+    <div id="addItemModalDialogDiv" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <i class="fa fa-plus"></i> <h3 id="addItemModalDialogHeader" class="box-title"></h3>
+                </div>
+                <div id="addItemModalDialogBodyDiv" class="box-body">
+                </div>
+            </div>
         </div>
     </div>
 </body>

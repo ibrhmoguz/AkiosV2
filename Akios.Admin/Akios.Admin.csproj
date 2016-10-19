@@ -168,6 +168,7 @@
     <Content Include="Content\CSS\datepicker3.css" />
     <Content Include="Content\CSS\font-awesome.min.css" />
     <Content Include="Content\CSS\ionicons.min.css" />
+    <Content Include="Content\CSS\select2.min.css" />
     <Content Include="Content\CSS\skin-blue.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
@@ -353,6 +354,7 @@
     <Content Include="Scripts\Core\jquery.resizable.js" />
     <Content Include="Scripts\Core\jquery.sortable.js" />
     <Content Include="Scripts\Core\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Core\select2.full.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
