@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Akios.Admin.Infrastructure.Concrete;
@@ -48,7 +49,7 @@ namespace Akios.Admin.Controllers
             {
                 iDisplayLength = totalRecords;
             }
-            
+
             var filteredList = musteriRepo.Musteriler;
             if (!string.IsNullOrEmpty(iSearch))
             {
@@ -76,7 +77,7 @@ namespace Akios.Admin.Controllers
                                 : iSortColumnIndex == 6
                                     ? item.Mail
                                     : item.Web);
-            
+
             var list = filteredList.Skip(iDisplayStart).Take(iDisplayLength);
             var orderedList = (iSortDirection == "asc") ? list.OrderBy(orderFunc).ToList() : list.OrderByDescending(orderFunc).ToList();
 
@@ -101,6 +102,21 @@ namespace Akios.Admin.Controllers
                             })
             };
 
+            return JsonConvert.SerializeObject(result);
+        }
+
+        public string GetMusteriListForDropDown()
+        {
+            if (!musteriRepo.Musteriler.Any())
+                return string.Empty;
+
+            var sb = new StringBuilder();
+            foreach (var musteri in musteriRepo.Musteriler)
+            {
+                sb.AppendFormat("<option value=\"{0}\">{1} - {2}</option>", musteri.MusteriId, musteri.Kod, musteri.Adi);
+            }
+
+            var result = new { Data = sb.ToString() };
             return JsonConvert.SerializeObject(result);
         }
     }

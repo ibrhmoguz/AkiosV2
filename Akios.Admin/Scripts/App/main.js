@@ -112,6 +112,20 @@ function ModalLoad(url, baslik) {
     });
 }
 
+function DropDownLoad(dropDownListId, url, selected) {
+    $.ajax({
+        type: 'GET',
+        url: url,
+        data: selected,
+        cache: false,
+        dataType: "json",
+        async: true,
+        success: function (msg) {
+            $("#" + dropDownListId).html(msg.Data);
+        }
+    });
+}
+
 
 /********** JQUERY DATATABLES DEFAULTS  **********/
 
