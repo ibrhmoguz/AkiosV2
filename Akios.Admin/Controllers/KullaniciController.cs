@@ -174,5 +174,12 @@ namespace Akios.Admin.Controllers
 
             return File(System.IO.File.ReadAllBytes(ControllerContext.HttpContext.Server.MapPath("~/Content/Image/userProfile.jpg")), "image/jpeg");
         }
+
+        [HttpPost]
+        public string FotoUpload()
+        {
+            var result = new { Data = "success" };
+            return JsonConvert.SerializeObject(result);
+        }
     }
 }
