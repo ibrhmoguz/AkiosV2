@@ -13,7 +13,10 @@
         });
 
         DropDownLoad("musteriDropDownList", "Musteri/GetMusteriListForDropDown", "");
-        FileUpload('Kullanici/FotoUpload', 'kullanicifileUpload');
+
+        $("#PictureUploadForm").dropzone({
+            url: "Kullanici/FotoUpload"
+        });
     })
 </script>
 
@@ -64,17 +67,13 @@
 <div class="form-group">
     <div style="position: relative;">
         <label>Fotoğraf</label>
-        <span class="btn fileinput-button">
-            <i class="fa fa-fw fa-image"></i>
-            <input id="kullanicifileUpload" type="file" name="files[]" multiple>
-        </span>
+        <form id="PictureUploadForm" class="dropzone dz-clickable">
+            <div class="dz-message">
+                <i class="fa fa-fw fa-file-image-o"></i>
+                Dosya eklemek için tıklayın veya sürükleyip bırakın.
+            </div>
+        </form>
     </div>
-    <!-- The global progress bar -->
-    <div id="progress" class="progress">
-        <div class="progress-bar progress-bar-success"></div>
-    </div>
-    <!-- The container for the uploaded files -->
-    <div id="files" class="files"></div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
