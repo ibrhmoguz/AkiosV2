@@ -12,12 +12,16 @@ namespace Akios.Domain.Entities
     {
         public int KullaniciId { get; set; }
         [DisplayName("Kullanıcı Adı")]
+        [Required]
         public string KullaniciAdi { get; set; }
         [DisplayName("Şifre")]
+        [Required]
         public string Sifre { get; set; }
         [DisplayName("Adı")]
+        [Required]
         public string Adi { get; set; }
         [DisplayName("Soyadı")]
+        [Required]
         public string Soyadi { get; set; }
         public int? MusteriId { get; set; }
         public DateTime KayitTarihi { get; set; }

@@ -10,7 +10,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-    <link href="~/Content/CSS/bootstrap.min.css" rel="stylesheet" />   
+    <link href="~/Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
     <link href="~/Content/CSS/font-awesome.min.css" rel="stylesheet" />
     <!-- Ionicons -->
@@ -35,23 +35,20 @@
     <script src="~/Scripts/Core/jquery-ui.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
     <script src="~/Scripts/Core/bootstrap.min.js"></script>
-
     <!-- jQuery datatables -->
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
-    
-    <!-- DropzoneJS plugin -->
+    <!-- DropzoneJS plugin - upload files -->
     <script src="~/Scripts/dropzone/dropzone.min.js"></script>
-
     <!-- AdminLTE App -->
     <script src="~/Scripts/Core/app.min.js"></script>
     <script src="~/Scripts/Core/bootstrap-datepicker.js"></script>
-
     <!-- Select2 plugin -->
     <script src="~/Scripts/Core/select2.full.min.js"></script>
-
+    <!-- Bootstrap Validator -->
+    <script src="~/Scripts/Core/bootstrap.validator.min.js"></script>
     <!-- App Main-->
-    <script src="~/Scripts/App/main.js"></script>   
+    <script src="~/Scripts/App/main.js"></script>
 
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
@@ -163,8 +160,10 @@
                 <div class="box-header with-border">
                     <i class="fa fa-plus"></i> <h3 id="addItemModalDialogHeader" class="box-title"></h3>
                 </div>
-                <div id="addItemModalDialogBodyDiv" class="box-body">
-                </div>
+                <form id="addItemModalDialogForm" data-toggle="validator" role="form">
+                    <div id="addItemModalDialogBodyDiv" class="box-body">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -17,6 +17,14 @@
         $("#PictureUploadForm").dropzone({
             url: "Kullanici/FotoUpload"
         });
+
+        $("#addItemModalDialogForm").validator();
+
+        $("#btnKullaniciKaydet").click(function () {
+            alert("asdf");
+            $("#addItemModalDialogForm").validator('validate');
+
+        });
     })
 </script>
 
@@ -48,7 +56,9 @@
                     {
                         @class = "form-control",
                         @placeholder = property.DisplayName,
-                        @type = "password"
+                        @type = "password",
+                        @required = "",
+                        @error="Şifre giriniz!"
                     })
                 }
                 else
@@ -77,5 +87,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
-    <button type="button" class="btn btn-primary">Kaydet</button>
+    <button id="btnKullaniciKaydet" type="button" class="btn btn-primary">Kaydet</button>
 </div>

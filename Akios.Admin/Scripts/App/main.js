@@ -168,9 +168,18 @@ $.extend(true, $.fn.dataTable.defaults, {
 
 /********** DROPZONE JS  **********/
 Dropzone.options.PictureUploadForm = {
-    maxFilesize: 2, // MB
+    maxFilesize: 1, // MB
     addRemoveLinks: true,
+    uploadMultiple: false,
     maxFiles: 1,
+    acceptedFiles: ".jpeg,.jpg,.png,",
+    init: function () {
+        this.hiddenFileInput.removeAttribute('multiple');
+        this.on("maxfilesexceeded", function (file) {
+            alert("Maksimum 1 dosya ekleyebilirsiniz!");
+            this.removeFile(file);
+        });
+    },
     dictDefaultMessage: "Dosya yüklemek için buraya sürükleyiniz.",
     dictFallbackMessage: "Tarayıcınız sürükle-bırak dosya yüklemeyi desteklemiyor.",
     dictInvalidFileType: "bu dosya türünü yükleyemezsiniz.",
