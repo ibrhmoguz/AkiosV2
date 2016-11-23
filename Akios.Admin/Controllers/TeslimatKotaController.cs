@@ -35,6 +35,12 @@ namespace Akios.Admin.Controllers
             var iSearch = Request["sSearch"];
             var iSortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
             var iSortDirection = Request["sSortDir_0"];
+            var totalRecords = teslimatKotaRepo.TeslimatKotalar.Count();
+
+            if (iDisplayLength == -1)
+            {
+                iDisplayLength = totalRecords;
+            }
 
             var joinedList = from t in teslimatKotaRepo.TeslimatKotalar
                              join m in musteriRepo.Musteriler on t.MusteriId equals m.MusteriId
@@ -42,7 +48,7 @@ namespace Akios.Admin.Controllers
                                  m.Adi,
                                  t.MaxTeslimatSayisi.ToString(),
                                  t.TeslimatTarihi.ToShortDateString(),
-                                 t.TeslimatYapilacakMi ? "Evet" : "Hayir",
+                                 t.TeslimatYapilacakMi ? "Evet" : "Hayır",
                                  t.TeslimatKotaId.ToString());
 
             if (!string.IsNullOrEmpty(iSearch))
@@ -54,15 +60,6 @@ namespace Akios.Admin.Controllers
             }
 
             var filteredList = joinedList.ToList();
-            var totalRecords = filteredList.Count();
-
-            if (iDisplayLength == -1)
-            {
-                iDisplayLength = totalRecords;
-            }
-
-            var list = filteredList.Skip(iDisplayStart).Take(iDisplayLength);
-
             Func<Tuple<string, string, string, string, string>, string> orderFunc = (item => iSortColumnIndex == 1
                 ? item.Item1
                 : iSortColumnIndex == 2
@@ -71,13 +68,14 @@ namespace Akios.Admin.Controllers
                     ? item.Item3
                         : item.Item4);
 
-            var orderedList = (iSortDirection == "asc") ? list.OrderBy(orderFunc).ToList() : list.OrderByDescending(orderFunc).ToList();
+            var orderedList = (iSortDirection == "asc") ? filteredList.OrderBy(orderFunc).ToList() : filteredList.OrderByDescending(orderFunc).ToList();
+            var list = orderedList.Skip(iDisplayStart).Take(iDisplayLength);
 
             var result = new
             {
                 iTotalRecords = totalRecords,
-                iTotalDisplayRecords = totalRecords,
-                aaData = (from item in orderedList
+                iTotalDisplayRecords = filteredList.Count,
+                aaData = (from item in list
                           select new[] 
                             {
                                 item.Item5,

@@ -34,6 +34,12 @@ namespace Akios.Admin.Controllers
             var iSearch = Request["sSearch"];
             var iSortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
             var iSortDirection = Request["sSortDir_0"];
+            var totalRecords = refDataRepo.ReferansDatalar.Count();
+
+            if (iDisplayLength == -1)
+            {
+                iDisplayLength = totalRecords;
+            }
 
             var joinedList = from r in refDataRepo.ReferansDatalar
                              join m in musteriRepo.Musteriler on r.MusteriId equals m.MusteriId
@@ -50,23 +56,15 @@ namespace Akios.Admin.Controllers
             }
 
             var filteredList = joinedList.ToList();
-            var totalRecords = filteredList.Count();
-
-            if (iDisplayLength == -1)
-            {
-                iDisplayLength = totalRecords;
-            }
-
-            var list = filteredList.Skip(iDisplayStart).Take(iDisplayLength);
-
             Func<Tuple<string, string, string>, string> orderFunc = (item => iSortColumnIndex == 1 ? item.Item1 : item.Item2);
-            var orderedList = (iSortDirection == "asc") ? list.OrderBy(orderFunc).ToList() : list.OrderByDescending(orderFunc).ToList();
+            var orderedList = (iSortDirection == "asc") ? filteredList.OrderBy(orderFunc).ToList() : filteredList.OrderByDescending(orderFunc).ToList();
+            var list = orderedList.Skip(iDisplayStart).Take(iDisplayLength);
 
             var result = new
             {
                 iTotalRecords = totalRecords,
-                iTotalDisplayRecords = totalRecords,
-                aaData = (from item in orderedList
+                iTotalDisplayRecords = filteredList.Count,
+                aaData = (from item in list
                           select new[] 
                             {
                                 item.Item3,

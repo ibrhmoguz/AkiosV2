@@ -78,14 +78,14 @@ namespace Akios.Admin.Controllers
                                     ? item.Mail
                                     : item.Web);
 
-            var list = filteredList.Skip(iDisplayStart).Take(iDisplayLength);
-            var orderedList = (iSortDirection == "asc") ? list.OrderBy(orderFunc).ToList() : list.OrderByDescending(orderFunc).ToList();
+            var orderedList = (iSortDirection == "asc") ? filteredList.OrderBy(orderFunc).ToList() : filteredList.OrderByDescending(orderFunc).ToList();
+            var list = orderedList.Skip(iDisplayStart).Take(iDisplayLength);
 
             var result = new
             {
                 iTotalRecords = totalRecords,
-                iTotalDisplayRecords = totalRecords,
-                aaData = (from item in orderedList
+                iTotalDisplayRecords = filteredList.Count(),
+                aaData = (from item in list
                           select new[] 
                             {
                                 Convert.ToString(item.MusteriId), 

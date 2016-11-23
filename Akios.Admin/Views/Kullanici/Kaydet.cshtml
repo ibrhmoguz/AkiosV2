@@ -1,0 +1,106 @@
+﻿@model Akios.Domain.Entities.Kullanici
+@{
+    ViewBag.Title = "Kullanıcı Bilgisi";
+    ViewBag.Description = "Sistemde tanımlı kullanıcı bilgisi görüntülenir.";
+    Layout = null;
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#musteriDropDownList").select2({
+            placeholder: 'Seçim yapmak için tıklayınız.',
+            allowClear: true
+        });
+
+        DropDownLoad("musteriDropDownList", "Musteri/GetMusteriListForDropDown", "");
+
+        $("#PictureUploadForm").dropzone({
+            url: "Kullanici/FotoUpload"
+        });
+
+        $("#btnKullaniciKaydet").click(function () {
+            alert("asdf");
+            //ValidateForm();
+        });
+
+        ValidateForm();
+    });
+
+    function ValidateForm() {
+        $('#kullaniciKaydet').bootstrapValidator({
+            message: 'Geçerli değer giriniz!',
+            excluded: [':disabled'],
+            feedbackIcons: { valid: 'glyphicon glyphicon-ok', invalid: 'glyphicon glyphicon-remove', validating: 'glyphicon glyphicon-refresh' },
+            fields: {
+                musteriDropDownList: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' } } },
+                KullaniciAdi: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' }, stringLength: { min: 1, max: 250, message: 'Bu alan maksimum 250 karakter olabilir!' } } },
+                Sifre: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' }, stringLength: { min: 1, max: 250, message: 'Bu alan maksimum 250 karakter olabilir!' } } },
+                Adi: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' }, stringLength: { min: 1, max: 250, message: 'Bu alan maksimum 250 karakter olabilir!' } } },
+                Soyadi: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' }, stringLength: { min: 1, max: 250, message: 'Bu alan maksimum 250 karakter olabilir!' } } }
+            }
+        });
+    }
+</script>
+
+<form id="kullaniciKaydet">
+    @Html.HiddenFor(m => m.KullaniciId)
+
+    <div class="form-group">
+        <label>Müşteri</label>
+        <select id="musteriDropDownList" class="form-control" style="width: 100%;"></select>
+    </div>
+
+    @foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        switch (property.PropertyName)
+        {
+            case "KullaniciId":
+            case "MusteriId":
+            case "IsAdmin":
+            case "FotoData":
+            case "FotoMimeType":
+            case "KayitTarihi":
+                // do nothing
+                break;
+            default:
+                <div class="form-group">
+                    <label>@(property.DisplayName ?? property.PropertyName)</label>
+                    @if (property.PropertyName == "Sifre")
+                    {
+                        @Html.TextBox(property.PropertyName, null, new
+                    {
+                        @class = "form-control",
+                        @placeholder = property.DisplayName,
+                        @type = "password",
+                        @required = "",
+                        @error = "Şifre giriniz!"
+                    })
+                    }
+                    else
+                    {
+                        @Html.TextBox(property.PropertyName, null, new
+                    {
+                        @class = "form-control",
+                        @placeholder = property.DisplayName
+                    })
+                    }
+                </div>
+                    break;
+        }
+    }
+</form>
+<div class="form-group">
+    <div style="position: relative;">
+        <label>Fotoğraf</label>
+        <form id="PictureUploadForm" class="dropzone dz-clickable">
+            <div class="dz-message">
+                <i class="fa fa-fw fa-file-image-o"></i>
+                Dosya eklemek için tıklayın veya sürükleyip bırakın.
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
+    <button id="btnKullaniciKaydet" type="button" class="btn btn-primary">Kaydet</button>
+</div>

@@ -10,6 +10,8 @@ namespace Akios.Domain.Entities
 {
     public class Musteri
     {
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int? MusteriId { get; set; }
         public string Kod { get; set; }
         public string YetkiliKisi { get; set; }

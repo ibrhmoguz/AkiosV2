@@ -35,6 +35,12 @@ namespace Akios.Admin.Controllers
             var iSearch = Request["sSearch"];
             var iSortColumnIndex = Convert.ToInt32(Request["iSortCol_0"]);
             var iSortDirection = Request["sSortDir_0"];
+            var totalRecords = kullaniciRepo.Kullanicilar.Count();
+
+            if (iDisplayLength == -1)
+            {
+                iDisplayLength = totalRecords;
+            }
 
             var joinedList = from k in kullaniciRepo.Kullanicilar
                              join m in musteriRepo.Musteriler on k.MusteriId equals m.MusteriId into jList
@@ -56,15 +62,6 @@ namespace Akios.Admin.Controllers
             }
 
             var filteredList = joinedList.ToList();
-            var totalRecords = filteredList.Count();
-
-            if (iDisplayLength == -1)
-            {
-                iDisplayLength = totalRecords;
-            }
-
-            var list = filteredList.Skip(iDisplayStart).Take(iDisplayLength);
-
             Func<Tuple<string, string, string, string, string>, string> orderFunc = (item => iSortColumnIndex == 1
                 ? item.Item1
                 : iSortColumnIndex == 2
@@ -73,13 +70,14 @@ namespace Akios.Admin.Controllers
                         ? item.Item3
                         : item.Item4);
 
-            var orderedList = (iSortDirection == "asc") ? list.OrderBy(orderFunc).ToList() : list.OrderByDescending(orderFunc).ToList();
+            var orderedList = (iSortDirection == "asc") ? filteredList.OrderBy(orderFunc).ToList() : filteredList.OrderByDescending(orderFunc).ToList();
+            var list = orderedList.Skip(iDisplayStart).Take(iDisplayLength);
 
             var result = new
             {
                 iTotalRecords = totalRecords,
-                iTotalDisplayRecords = totalRecords,
-                aaData = (from item in orderedList
+                iTotalDisplayRecords = filteredList.Count,
+                aaData = (from item in list
                           select new[] 
                             {
                                 item.Item5, 
@@ -97,18 +95,18 @@ namespace Akios.Admin.Controllers
 
         public ViewResult Ekle()
         {
-            return View("Guncelle", new Kullanici());
+            return View("Kaydet", new Kullanici());
         }
 
         [HttpPost]
-        public ViewResult GuncelleView(int kullaniciId)
+        public ViewResult KaydetView(int kullaniciId)
         {
             Kullanici kullanici = kullaniciRepo.Kullanicilar.FirstOrDefault(x => x.KullaniciId == kullaniciId);
-            return View("Guncelle", kullanici);
+            return View("Kaydet", kullanici);
         }
 
         [HttpPost]
-        public ActionResult Guncelle(Kullanici k, HttpPostedFileBase image = null)
+        public ActionResult Kaydet(Kullanici k, HttpPostedFileBase image = null)
         {
             if (ModelState.IsValid)
             {
