@@ -124,6 +124,7 @@ function DropDownLoad(dropDownListId, url, selected) {
             $("#" + dropDownListId).html(msg.Data);
         }
     });
+    $("#" + dropDownListId).select2();
 }
 
 
@@ -166,7 +167,6 @@ $.extend(true, $.fn.dataTable.defaults, {
 });
 
 
-/********** DROPZONE JS  **********/
 Dropzone.options.PictureUploadForm = {
     maxFilesize: 1, // MB
     addRemoveLinks: true,
@@ -192,8 +192,29 @@ Dropzone.options.PictureUploadForm = {
 };
 
 
-/********** COMMON FUNCTIONS *************/
+$.fn.select2.defaults.set("placeholder", "Seçim yapmak için tıklayınız.");
+$.fn.select2.defaults.set("maximumInputLength", 20);
+$.fn.select2.defaults.set("allowClear", true);
 
+
+/********** COMMON FUNCTIONS *************/
+function IsDropdownValid(validator, dropdownId) {
+    if ($("#select2-" + dropdownId + "-container span.select2-selection__placeholder").text() != "") {
+        validator.updateStatus(dropdownId, "INVALID", null);
+    }
+}
+
+function GetDropDownListSelectedValue(dropDownListId) {
+    return $('#' + dropDownListId).val();
+}
+
+function GetDropDownListSelectedText(dropDownListId) {
+    return $('#' + dropDownListId + ' :selected').text();
+}
+
+function SetDropDownListSelectedText(dropDownListId, itemId) {
+    $('#' + dropDownListId).select2('data', { id: 6, label: 'ENABLED_FROM_JS' });
+}
 
 /********** Document READY **********/
 

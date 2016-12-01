@@ -7,32 +7,36 @@
 
 <script type="text/javascript">
     $(function () {
-        $("#musteriDropDownList").select2({
-            placeholder: 'Seçim yapmak için tıklayınız.',
-            allowClear: true
-        });
-
-        DropDownLoad("musteriDropDownList", "Musteri/GetMusteriListForDropDown", "");
-
         $("#PictureUploadForm").dropzone({
             url: "Kullanici/FotoUpload"
         });
 
-        $("#btnKullaniciKaydet").click(function () {
-            alert("asdf");
-            //ValidateForm();
-        });
-
+        DropDownLoad("musteriDropDownList", "Musteri/GetMusteriListForDropDown", "");
         ValidateForm();
+
+        SetDropDownListSelectedText("musteriDropDownList", "");
+
+
+        $("#btnKullaniciKaydet").click(function () {
+            var formValidator = $('#formKullaniciKaydet').data('bootstrapValidator');
+            IsDropdownValid(formValidator, "musteriDropDownList");
+            formValidator.validate();
+
+            alert(GetDropDownListSelectedValue("musteriDropDownList"));
+            alert(GetDropDownListSelectedText("musteriDropDownList"));
+
+            if (formValidator.isValid()) {
+                HideAddItemModalDialog();
+            }
+        });
     });
 
     function ValidateForm() {
-        $('#kullaniciKaydet').bootstrapValidator({
+        $('#formKullaniciKaydet').bootstrapValidator({
             message: 'Geçerli değer giriniz!',
             excluded: [':disabled'],
-            feedbackIcons: { valid: 'glyphicon glyphicon-ok', invalid: 'glyphicon glyphicon-remove', validating: 'glyphicon glyphicon-refresh' },
             fields: {
-                musteriDropDownList: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' } } },
+                musteriDropDownList: { validators: { notEmpty: { message: 'Seçim yapmalısınız!' } } },
                 KullaniciAdi: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' }, stringLength: { min: 1, max: 250, message: 'Bu alan maksimum 250 karakter olabilir!' } } },
                 Sifre: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' }, stringLength: { min: 1, max: 250, message: 'Bu alan maksimum 250 karakter olabilir!' } } },
                 Adi: { validators: { notEmpty: { message: 'Bu alan boş olamaz!' }, stringLength: { min: 1, max: 250, message: 'Bu alan maksimum 250 karakter olabilir!' } } },
@@ -42,12 +46,24 @@
     }
 </script>
 
-<form id="kullaniciKaydet">
+
+<div class="form-group">
+    <div style="position: relative;">
+        <label>Fotoğraf</label>
+        <form id="PictureUploadForm" class="dropzone dz-clickable">
+            <div class="dz-message">
+                <i class="fa fa-fw fa-file-image-o"></i>
+                Dosya eklemek için tıklayın veya sürükleyip bırakın.
+            </div>
+        </form>
+    </div>
+</div>
+<form id="formKullaniciKaydet">
     @Html.HiddenFor(m => m.KullaniciId)
 
     <div class="form-group">
         <label>Müşteri</label>
-        <select id="musteriDropDownList" class="form-control" style="width: 100%;"></select>
+        <select id="musteriDropDownList" name="musteriDropDownList" class="form-control" style="width: 100%"></select>
     </div>
 
     @foreach (var property in ViewData.ModelMetadata.Properties)
@@ -72,7 +88,6 @@
                         @class = "form-control",
                         @placeholder = property.DisplayName,
                         @type = "password",
-                        @required = "",
                         @error = "Şifre giriniz!"
                     })
                     }
@@ -88,19 +103,10 @@
                     break;
         }
     }
-</form>
-<div class="form-group">
-    <div style="position: relative;">
-        <label>Fotoğraf</label>
-        <form id="PictureUploadForm" class="dropzone dz-clickable">
-            <div class="dz-message">
-                <i class="fa fa-fw fa-file-image-o"></i>
-                Dosya eklemek için tıklayın veya sürükleyip bırakın.
-            </div>
-        </form>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
+        <button id="btnKullaniciKaydet" type="button" class="btn btn-primary">Kaydet</button>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-primary" data-dismiss="modal">Kapat</button>
-    <button id="btnKullaniciKaydet" type="button" class="btn btn-primary">Kaydet</button>
-</div>
+
+</form>
+
